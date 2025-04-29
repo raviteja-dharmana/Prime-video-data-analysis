@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is an **Exploratory Data Analysis (EDA)** of **Prime Video's** vast library of movies and TV shows. The dataset comprises over **4,000 entries**, and the goal is to uncover key insights about content trends, production patterns, audience preferences, and the diversity of genres. By leveraging Python and data visualization tools, this project offers an opportunity to explore data cleaning, feature engineering, and presenting findings through engaging visualizations.
+This project is an **Exploratory Data Analysis (EDA)** of **Prime Video's** vast library of movies and TV shows. The dataset comprises over **7,000 entries**, and the goal is to uncover key insights about content trends, production patterns, audience preferences, and the diversity of genres. By leveraging Python and data visualization tools, this project offers an opportunity to explore data cleaning, feature engineering, and presenting findings through engaging visualizations.
 
 ## Objectives
 
