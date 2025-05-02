@@ -1,146 +1,173 @@
-# Prime Video Exploratory Data Analysis (EDA)
+# <img src="https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png" alt="Prime Logo" width="300"/>
+# Prime Video Data Analysis (Python + SQL)
 
 ## Overview
 
-This project is an **Exploratory Data Analysis (EDA)** of **Prime Video's** vast library of movies and TV shows. The dataset comprises over **7,000 entries**, and the goal is to uncover key insights about content trends, production patterns, audience preferences, and the diversity of genres. By leveraging Python and data visualization tools, this project offers an opportunity to explore data cleaning, feature engineering, and presenting findings through engaging visualizations.
+This project presents a comprehensive **Exploratory Data Analysis (EDA)** of **Amazon Prime Video’s** extensive content library using **Python** and **SQL**. By examining over **7,000 entries**, we uncover meaningful insights into content trends, genre popularity, production countries, rating distributions, and more. The analysis emphasizes both programming and query-based approaches for real-world analytics.
 
 ## Objectives
 
-- Perform data cleaning and handle missing values and inconsistencies.
-- Analyze attributes such as **content type**, **release year**, **country of origin**, and **ratings**.
-- Engineer new features like:
-  - **Year Difference**: Time difference between release year and addition to Prime Video.
-  - **Movie Category**: Classification of movies based on duration.
-  - **Age Suitability**: Categorization of content based on ratings.
-- Visualize trends in **genres**, **content types**, and **duration** patterns.
-- Provide actionable insights for stakeholders, content creators, and strategists.
+- Clean and preprocess raw data to address nulls and inconsistencies.
+- Perform descriptive analysis using Python and SQL.
+- Explore data based on:
+  - **Content Type**
+  - **Release Year**
+  - **Country of Origin**
+  - **Rating** and **Genres**
+- Engineer meaningful features:
+  - **Year Difference** (Release vs. Prime addition year)
+  - **Movie Category** (Short, Standard, Long)
+  - **Age Suitability** (Kids, Teens, Mature)
+- Create compelling visualizations using Python.
+- Showcase SQL querying for insights and pattern recognition.
 
 ## Dataset
 
 ### Source
-The dataset used in this project is publicly available and contains the following attributes:
+The dataset contains detailed information about Prime Video titles:
 
-- **Title**: Name of the movie or TV show.
-- **Content Type**: Indicates whether the content is a movie or a TV show.
-- **Release Year**: The year the content was originally released.
-- **Country**: The country of origin for the content.
-- **Rating**: The content rating (e.g., PG, TV-MA, etc.).
-- **Duration**: The duration of the movie (in minutes) or the number of seasons for TV shows.
-- **Listed Genres**: Genres the content is categorized under.
+- **Title**: Name of the content.
+- **Content Type**: Movie or TV Show.
+- **Release Year**: Original release year.
+- **Country**: Production country.
+- **Rating**: Viewer guidance rating.
+- **Duration**: Runtime in minutes or number of seasons.
+- **Listed Genres**: Content classification (e.g., Drama, Comedy).
 
-The dataset was cleaned and preprocessed to handle missing and inconsistent data.
+### Processing
+- Null values were handled.
+- Date fields and categories were standardized.
+- The dataset was imported into **MySQL** for query-based analysis.
 
 ## Key Highlights
 
-### Insights Uncovered
+### Insights
 
-- **Content Production by Country**:
-  - The **United States** leads content production, contributing significantly to Prime Video's library.
-  - **India** and **United Kingdom** also have substantial content representation.
+- **Content by Country**:
+  - The **USA** leads in content volume.
+  - **India** and the **UK** also contribute significantly.
 
-- **Genre Popularity**:
-  - **Dramas** and **Comedies** dominate across global content.
-  - **Action** and **Thrillers** are very popular in the U.S. and other English-speaking countries.
+- **Popular Genres**:
+  - Dominated by **Drama**, **Comedy**, **Action**, and **Thriller**.
 
-- **Content Type and Ratings**:
-  - **Movies** account for 94.8% of the total content on Prime Video.
-  - Movies are more likely to have **mature ratings** (e.g., TV-MA, R), while TV shows tend to cater to a broader audience, often with **family-friendly** ratings (e.g., PG, TV-G).
+- **Content Type Distribution**:
+  - **Movies** make up **94.8%** of the dataset.
 
-- **Duration Patterns**:
-  - The longest movie in the dataset exceeds **240 minutes**.
-  - Movies produced in **earlier years** tend to have longer durations, while newer movies and shows are usually shorter, indicating quicker addition to the platform.
+- **Ratings**:
+  - TV Shows: Tend to be family-friendly (PG, TV-G).
+  - Movies: More often rated for mature audiences (R, TV-MA).
+
+- **Duration**:
+  - Movies vary from short (<60 mins) to extended (>240 mins).
+  - Newer content generally has shorter durations.
 
 - **Top Contributors**:
-  - **Directors**: Notable directors like **Alastair Fothergill** and **Vikas Bahl** are among the most featured in the library.
-  - **Actors**: **Shah Rukh Khan**, **Al Pacino**, and **Emily Blunt** frequently appear in Prime Video’s content library.
+  - **Directors**: Alastair Fothergill, Vikas Bahl
+  - **Actors**: Shah Rukh Khan, Al Pacino, Emily Blunt
 
 ### Feature Engineering
-To derive deeper insights, the following features were engineered:
 
 - **Year Difference**:
-  - Captures the gap between the **release year** and the **year the content was added** to Prime Video.
-  
-- **Movie Categories**:
-  - Classified movies as:
-    - **Short** (< 60 mins)
-    - **Standard** (60–120 mins)
-    - **Long** (> 120 mins)
+  - Time gap between release and Prime Video listing.
+
+- **Movie Category**:
+  - **Short**: < 60 mins
+  - **Standard**: 60–120 mins
+  - **Long**: > 120 mins
 
 - **Age Suitability**:
-  - Categorized ratings into:
-    - **Kids** (G, PG)
-    - **Teens** (PG-13)
-    - **Mature** (R, TV-MA)
+  - **Kids**: G, PG
+  - **Teens**: PG-13
+  - **Mature**: R, TV-MA
 
-## Visualizations
-The project includes various visualizations to effectively communicate findings:
+## Visualizations (Python)
 
-- **Heatmaps**: Showing correlations between attributes.
-- **Bar Charts**: Analyzing genre popularity, top actors, and content type distributions.
-- **Pie Charts**: Depicting the proportion of movies versus TV shows.
-- **Scatter Plots**: Identifying patterns in movie duration and year differences.
+- **Bar Charts**: Genre and rating distributions
+- **Pie Charts**: Movies vs. TV shows
+- **Heatmaps**: Attribute correlations
+- **Scatter Plots**: Duration vs. release year
+
+## SQL Analysis
+
+SQL queries were written to:
+
+- Count content by type:
+  ```sql
+  SELECT type, COUNT(*) FROM prime_data GROUP BY type;
+  ```
+- Most popular genres:
+  ```sql
+  SELECT listed_in, COUNT(*) as count FROM prime_data GROUP BY listed_in ORDER BY count DESC;
+  ```
+- Top contributing countries:
+  ```sql
+  SELECT country, COUNT(*) as count FROM prime_data GROUP BY country ORDER BY count DESC LIMIT 10;
+  ```
+- Ratings distribution:
+  ```sql
+  SELECT rating, COUNT(*) FROM prime_data GROUP BY rating;
+  ```
+- Longest movies:
+  ```sql
+  SELECT title, duration FROM prime_data WHERE type='Movie' ORDER BY duration DESC LIMIT 5;
+  ```
 
 ## Technologies Used
 
-- **Programming Language**: Python
+- **Languages**: Python, SQL
+- **Tools**:
+  - **Jupyter Notebook** for Python analysis
+  - **MySQL** for database querying
 - **Libraries**:
-  - **Pandas**: For data manipulation and cleaning.
-  - **NumPy**: For numerical computations.
-  - **Matplotlib** and **Seaborn**: For creating insightful visualizations.
-  - **Jupyter Notebook**: For an interactive coding environment.
+  - **Pandas**, **NumPy**: Data handling
+  - **Matplotlib**, **Seaborn**: Visualization
 
 ## Steps to Run the Project
 
+### Python Workflow
 
-1. **Clone the repository**:  
-   Clone the project repository from GitHub to your local machine.
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/prime-video-data-analysis.git
    ```
-
-2. **Navigate to the project directory**:  
-   Move into the project folder you just cloned.
+2. **Navigate to the folder**:
    ```bash
    cd prime-video-data-analysis
    ```
-
-3. **Install required Python libraries**:  
-   Install all the necessary libraries using the `requirements.txt` file.
+3. **Install requirements**:
    ```bash
    pip install -r requirements.txt
    ```
-
-4. **Open the Jupyter Notebook**:  
-   Launch Jupyter Notebook to explore and run the analysis.
+4. **Launch Jupyter Notebook**:
    ```bash
    jupyter notebook prime_video_analysis.ipynb
    ```
 
-5. **Run all cells**:  
-   Once the notebook opens, run all the cells to see the full analysis and visualizations.
+### SQL Workflow
 
+1. **Import CSV into MySQL database**
+2. **Open SQL client (e.g., MySQL Workbench)**
+3. **Run queries from `prime_video_queries.sql`** to extract insights
 
+## Key Learnings
 
-# Key Learnings
--This project provided hands-on experience in:
+- Learned end-to-end data analysis using Python and SQL.
+- Practiced cleaning and preprocessing datasets.
+- Developed SQL querying skills for real-world datasets.
+- Created compelling visualizations to share insights.
+- Strengthened storytelling using both code and queries.
 
--Data cleaning techniques for handling real-world data with missing and inconsistent values.
+## Conclusion
 
--Feature engineering for deriving deeper insights.
+This Prime Video project blends Python and SQL to analyze and visualize streaming data. It showcases how multiple tools can be used in tandem to clean, analyze, and present findings effectively. The insights generated can aid streaming platforms in content curation, recommendation engines, and strategy formulation.
 
--Creating impactful visualizations to communicate findings effectively.
+## Acknowledgments
 
--Storytelling with data to uncover trends in the entertainment industry.
+Thanks to AI guidance and open data communities for enabling this project.
 
-# Conclusion
-This Prime Video EDA project was an insightful exercise in analyzing streaming content and understanding audience preferences. The analysis provides valuable insights that can help content creators, strategists, and business analysts in the entertainment industry make data-driven decisions. The findings also emphasize the power of data science in uncovering hidden patterns and driving innovation.
+## Connect With Me
 
-# Acknowledgments
-Special thanks to Ai guidance and support throughout this project.
+- LinkedIn: [Raviteja](https://www.linkedin.com/in/ravi-teja-dharmana/)
+- GitHub: [Explore More Projects](https://github.com/your-username)
+- Let’s connect and collaborate on exciting data projects! 🚀
 
-# Connect With Me
-Feel free to reach out with feedback, suggestions, or collaboration opportunities! 😊
-
-LinkedIn: [Raviteja](https://www.linkedin.com/in/ravi-teja-dharmana/)
-
-Explore more projects: Let’s connect to discuss exciting data science projects! 🚀
